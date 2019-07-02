@@ -1,0 +1,19 @@
+.ListHomework {
+	display: grid;
+	grid-template-columns: repeat(5,minmax(100px,300px));
+	grid-gap:20px;
+}
+
+
+@media (max-width: 767px) {
+  .ListHomework{
+    grid-template-columns: repeat(5,minmax(auto,auto));
+  } 
+}
+
+@media (max-width: 400px) {
+  .ListHomework{
+    grid-template-columns: repeat(3,minmax(auto,auto));
+    justify-content: space-between;
+  } 
+}

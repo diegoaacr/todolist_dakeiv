@@ -1,26 +1,67 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Header from './components/Header'
+import AddHomework from './components/AddHomework'
+import ListHomework from './components/ListHomework'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export default class App extends Component {
+  state = {
+    homeworks:[]
+  }
+
+
+componentDidMount(){
+  const homeworksLS = localStorage.getItem('homeworks')
+
+    if(homeworksLS){
+      this.setState({
+        homeworks: JSON.parse(homeworksLS)
+      })
+    }
 }
 
-export default App;
+
+  componentDidUpdate() {
+    localStorage.setItem('homeworks',JSON.stringify(this.state.homeworks))
+  }
+
+
+  getHomework = (homework) => {
+    let homeworks = [...this.state.homeworks,homework]
+
+    this.setState({homeworks})
+
+  }
+
+  deleteHomework = (id) => {
+  
+    let copiaState = [...this.state.homeworks]
+
+    let homeworks = copiaState.filter(num => num.id !== id)
+
+    this.setState({homeworks})
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Header 
+          titulo='TodoList Dakeiv'
+        />
+
+      <div className="App-Body"> 
+        <AddHomework 
+          getHomework = {this.getHomework}
+        />
+
+
+        <ListHomework 
+          homeworks= {this.state.homeworks}
+          deleteHomework = {this.deleteHomework}
+        />
+      </div>
+      </div>
+    )
+  }
+}
+
