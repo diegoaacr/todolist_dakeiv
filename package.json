@@ -2,7 +2,7 @@
   "name": "todolist_dakeiv",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://diegoaacr.github.io/todolist_dakeiv",
+  "homepage": "http://diegoaacr.github.io/todolist_dakeiv/",
   "dependencies": {
     "gh-pages": "^2.0.1",
     "react": "^16.8.6",
